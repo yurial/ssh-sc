@@ -1,0 +1,3 @@
+This script allow to login (using ssh) and starting/reopening screen session.
+On disconnect, script try to reconnect automatically.
+(screen tool at remote host required)
