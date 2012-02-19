@@ -20,9 +20,11 @@ until [ -z "$1" ]; do
             ;;
         esac
     shift
-    done
+done
 
-while [ 0 ]; do
+if [ -n "$PARAMS" ]
+    then 
+    while [ 1 ]; do
     case $RET in
         '1') #new session needed
             echo "Session '$SESSION'"
@@ -45,6 +47,8 @@ while [ 0 ]; do
             echo "Session '$SESSION' error"
             exit $RET
             ;;
-        esac
-    done
-
+        esac;
+    done;
+    else
+        ssh
+fi;
