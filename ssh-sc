@@ -28,12 +28,12 @@ if [ -n "$PARAMS" ]
     case $RET in
         '1') #new session needed
             echo "Session '$SESSION'"
-            ssh $PARAMS -t screen -l -S $SESSION
+            ssh $PARAMS -t screen -U -l -S $SESSION
             RET=$?
             ;;
         '255') #restart session
             echo "Restart session '$SESSION'"
-            ssh $PARAMS -t screen -l -xR $SESSION
+            ssh $PARAMS -t screen -U -l -xR $SESSION
             RET=$?
             if [ $RET = 255 ]; then
                 sleep 1;
