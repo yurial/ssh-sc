@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 RET=1
 PARAMS=
@@ -28,12 +28,12 @@ if [ -n "$PARAMS" ]
     case $RET in
         '1') #new session needed
             echo "Session '$SESSION'"
-            ssh $PARAMS -t screen -l -S $SESSION
+            ssh $PARAMS -t screen -U -l -S $SESSION
             RET=$?
             ;;
         '255') #restart session
             echo "Restart session '$SESSION'"
-            ssh $PARAMS -t screen -l -xR $SESSION
+            ssh $PARAMS -t screen -U -l -xR $SESSION
             RET=$?
             if [ $RET = 255 ]; then
                 sleep 1;
@@ -50,5 +50,9 @@ if [ -n "$PARAMS" ]
         esac;
     done;
     else
-        ssh
+        (   echo "${0} ssh-screen tool"         >&2;
+            ssh 2>&1 | sed -e 's/ssh/ssc/g'     >&2;
+            echo "           [-r session_name]" >&2;
+            echo "           [-S session_name]" >&2;
+        ) | cat;
 fi;
