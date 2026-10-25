@@ -1,3 +1,6 @@
 This script allow to login (using ssh) and starting/reopening screen session.
 On disconnect, script try to reconnect automatically.
 (screen tool at remote host required)
+
+ssh-tm (sst) is the same for tmux: login (using ssh) and starting/reopening tmux session.
+(tmux tool at remote host required)
